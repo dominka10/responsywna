@@ -1,0 +1,13 @@
+.Piesek {
+  max-width: 400px;
+  max-height: 400px;
+}
+.KontenerNaObrazki {
+  height: 400px;
+  width: 400px;
+  display: flex;
+  border: 2px dashed;
+  padding: 12px;
+  align-items: center;
+  justify-content: center;
+}
