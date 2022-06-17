@@ -1,0 +1,72 @@
+body {
+  margin: 0%;
+}
+.modal {
+  width: 70%;
+  height: 70%;
+  position: fixed;
+  margin-left: 15%;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.733);
+  margin-top: -1px;
+  animation: zoom 0.3s ease-in-out;
+  visibility: hidden;
+}
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.GetDataButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  background-color: wheat;
+  opacity: 100%;
+  text-decoration: none;
+
+  padding: 10px 20px;
+}
+
+.containerActive {
+  filter: blur(20px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.CloseModal {
+  color: rgba(255, 255, 255, 0.87);
+  font-size: 25px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  text-decoration: none;
+}
+.CloseModal:hover {
+  color: rgb(255, 255, 255);
+}
+.modal.active {
+  top: 10%;
+  transition: 0.5s;
+  visibility: visible;
+  opacity: 1;
+}
+.Piesek {
+  max-width: 400px;
+  max-height: 400px;
+}
+/* .modal img {
+  width: 50%;
+  object-fit: cover;
+} */
