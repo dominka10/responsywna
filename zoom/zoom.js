@@ -21,6 +21,7 @@ function PobieranieDanych(Url) {
 
 // funkcja wyświetla dane z API
 function Wyswietlanie(AdresObrazka) {
+  // warunek - gdy obrazek nie jest null to usuń (to sprawia ze mamy tylko jeden obrazek w modalu)
   if (Kontener.firstChild != null) {
     // warunek jeśli kontener nie jest null( pusty)
     Kontener.firstChild.remove(); // to usuń
@@ -29,33 +30,34 @@ function Wyswietlanie(AdresObrazka) {
   // const Obrazek = document.querySelector(".Obrazek");
   Obrazek.src = AdresObrazka;
   Obrazek.classList.add("Piesek");
+  Obrazek.addEventListener("click", openfn);
   Kontener.prepend(Obrazek); // prepend - dodaj do początku append - dodaj do końca
 }
 
 PobierzDane.addEventListener("click", Klik);
 // klikanie na obrazek
-
-let open = Kontener; //to działa ale powinno się klikać tylko na obrazek a nie na cały kontener
+// zamyka modal i otwiera klase active
 let close = document.querySelector(".CloseModal");
-
 let modal = document.querySelector(".modal");
 function openfn(event) {
   modal.classList.add("active");
   event.stopPropagation();
+  const IstniejacyObrazek = modal.querySelector("img");
+
+  if (IstniejacyObrazek != null) {
+    // warunek jeśli kontener nie jest null( pusty)
+    IstniejacyObrazek.remove(); // to usuń
+  }
+  // tworzy nową zmienną do pobierania scr
+  const AdresObrazka = event.target.getAttribute("src");
+  const newImage = document.createElement("img");
+  // nadajemy nazwę klasie zeby móc ją stylować
+  newImage.classList.add("PiesekwModalu");
+  newImage.setAttribute("src", AdresObrazka);
+  //dodaje obrazek do modala
+  modal.append(newImage);
 }
 
-// dodawanie obrazka do modalu
-
-// //creating the modal
-// let imgModal = (src) => {
-//   const modal = document.createElement("div");
-//   modal.setAttribute("class", "modal");
-//   //add the modal to the main section or the parent element
-//   document.querySelector(".main").append(modal);
-//   //adding image to modal
-//   const newImage = document.createElement("img");
-//   newImage.setAttribute("src", src);
-//   modal.append(newImage)
 function closefn(event) {
   modal.classList.remove("active");
 }
@@ -66,37 +68,10 @@ function closeOnBodyfn(event) {
   }
 }
 
-open.addEventListener("click", openfn);
 close.addEventListener("click", closefn);
 document.body.addEventListener("click", closeOnBodyfn);
 
-function toggle(link) {
-  let blur = document.querySelector(".container");
-  let modal = document.querySelector(".container");
-  link.addEventListener("click", function () {
-    blur.classList.toggle("active");
-    modal.classList.toggle("active");
-  });
-}
-toggle(open);
-toggle(close);
-
-let imgModal = (src) => {
-  const modal = document.createElement("div");
-  modal.setAttribute("class", "modal");
-  //add the modal to the main section or the parent element
-  document.querySelector(".main").append(modal);
-  //adding image to modal
-  const newImage = document.createElement("img");
-  newImage.setAttribute("src", src);
-  modal.append(newImage);
-};
-// -------------- wyświetlanie obrzka w modalu -----------
-// let open = document.querySelector(".KontenerNaObrazki");
-// let close = document.querySelector(".CloseModal");
-
-// let modal = document.querySelector(AdresObrazka);
-// function openfn(event) {
-//   modal.classList.add("active");
-//   event.stopPropagation();
-// }
+// TODO:
+// - PO KLIKNIĘCIU W OBRAZEK OTWÓRZ MODAL
+// - PO OTWARCIU MODALA POBIERZ ADRES KLIKNIĘTEGO OBRAZKA
+// - STWÓRZ OBRAZEK Z POBRANYM ADRESEM I WYŚWIETL GO W MODALU

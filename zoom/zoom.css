@@ -2,11 +2,8 @@ body {
   margin: 0%;
 }
 .modal {
-  width: 70%;
-  height: 70%;
   position: fixed;
-  margin-left: 15%;
-  top: 0;
+  top: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,6 +11,8 @@ body {
   margin-top: -1px;
   animation: zoom 0.3s ease-in-out;
   visibility: hidden;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 @keyframes zoom {
   from {
@@ -66,7 +65,8 @@ body {
   max-width: 400px;
   max-height: 400px;
 }
-/* .modal img {
-  width: 50%;
+.PiesekwModalu {
+  height: 100%;
+  width: 100%;
   object-fit: cover;
-} */
+}
